@@ -38,6 +38,7 @@
                 android:text="Nazwa/Numer:"
                 android:textSize="20sp" />
             <EditText
+                android:id="@+id/field_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -61,6 +62,7 @@
                 android:text="Powierzchnia:"
                 android:textSize="20sp" />
             <EditText
+                android:id="@+id/area_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -69,7 +71,7 @@
                 android:textSize="20sp" />
 
             <AutoCompleteTextView
-                android:id="@+id/area"
+                android:id="@+id/area_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:minWidth="50dp"
