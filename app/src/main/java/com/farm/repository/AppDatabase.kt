@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(exportSchema = true, version = 1)
+@Database(exportSchema = true, entities = [FieldEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
+    abstract fun fieldDao() : FieldDao
 
     companion object {
         @Synchronized
