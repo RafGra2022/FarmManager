@@ -9,7 +9,12 @@ class FieldActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_field)
-        supportFragmentManager.beginTransaction().setReorderingAllowed(true).add(R.id.field_action_container, AddFieldFragment(), "addField").commit()
+        if(intent.getStringExtra("fragment").equals("FieldListFragment")){
+            supportFragmentManager.beginTransaction().setReorderingAllowed(true).add(R.id.field_action_container, FieldListFragment(), "fieldList").commit()
+        }else {
+            supportFragmentManager.beginTransaction().setReorderingAllowed(true)
+                .add(R.id.field_action_container, AddFieldFragment(), "addField").commit()
+        }
     }
 
 }

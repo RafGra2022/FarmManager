@@ -3,6 +3,7 @@ package com.farm.domain
 import android.content.Context
 import com.farm.repository.AppDatabase
 import com.farm.repository.FieldEntity
+import com.farm.utlis.SystemTimeStamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,7 +16,7 @@ class FieldHandler {
             fieldDetail.field,
             fieldDetail.area,
             fieldDetail.unit,
-            fieldDetail.insertStamp
+            SystemTimeStamp.getSystemTime()
         )
         if (context != null) {
             CoroutineScope(Dispatchers.IO).launch {
@@ -24,4 +25,19 @@ class FieldHandler {
         }
     }
 
+    suspend fun fetchAllFields(context: Context?) : List<FieldDetail>{
+        if (context != null) {
+                val fields = AppDatabase.getDataBase(context).fieldDao().findAllFields()
+                return mapToFieldDetail(fields)
+        }
+        return ArrayList()
+    }
+
+    private fun mapToFieldDetail(fieldEntities : List<FieldEntity>) : List<FieldDetail>{
+        val fields : ArrayList<FieldDetail> = ArrayList()
+        for(fieldEntity in fieldEntities){
+            fields.add(FieldDetail(fieldEntity.field,fieldEntity.area,fieldEntity.unit))
+        }
+        return fields
+    }
 }
