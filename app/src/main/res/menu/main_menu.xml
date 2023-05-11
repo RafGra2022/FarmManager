@@ -15,6 +15,11 @@
                 android:title="Dodaj działkę"
                 app:actionViewClass="android.widget.ImageButton"/>
             <item
+                android:id="@+id/view_fields"
+                android:icon="@drawable/ic_add_field"
+                android:title="Zobacz swoje działki"
+                app:actionViewClass="android.widget.ImageButton"/>
+            <item
                 android:id="@+id/scan_field"
                 android:icon="@drawable/ic_scan_field"
                 android:title="Skanuj działkę"

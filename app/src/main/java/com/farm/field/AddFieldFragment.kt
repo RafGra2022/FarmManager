@@ -44,8 +44,7 @@ class AddFieldFragment : Fragment() {
             val fieldName = view?.findViewById<EditText>(R.id.field_name)?.text.toString()
             val areaSize = view?.findViewById<EditText>(R.id.area_size)?.text.toString().toFloat()
             val areaUnit = view?.findViewById<AutoCompleteTextView>(R.id.area_unit)?.text.toString()
-            val insertStamp = SystemTimeStamp.getSystemTime()
-            val fieldDetail = FieldDetail(fieldName, areaSize, areaUnit, insertStamp)
+            val fieldDetail = FieldDetail(fieldName, areaSize, areaUnit)
             val fieldHandler = FieldHandler()
 
             fieldHandler.save(context, fieldDetail)

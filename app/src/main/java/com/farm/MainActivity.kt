@@ -53,6 +53,11 @@ class MainActivity : AppCompatActivity() , LocationListener {
         if(item.itemId == R.id.add_field){
             startActivity(Intent(this@MainActivity,FieldActivity::class.java))
         }
+        if(item.itemId == R.id.view_fields){
+            val intent = Intent(this@MainActivity,FieldActivity::class.java)
+            intent.putExtra("fragment","FieldListFragment")
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 
