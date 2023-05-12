@@ -3,17 +3,25 @@ package com.farm.field
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.farm.R
 import com.farm.domain.FieldDetail
 
-class FieldAdapter(private val fields: List<FieldDetail>) :
+class FieldAdapter(private val fields: List<FieldDetail>, val parentFragmentManager: FragmentManager) :
     RecyclerView.Adapter<FieldAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val fieldName = itemView.findViewById<TextView>(R.id.field_name)
-        val area = itemView.findViewById<TextView>(R.id.field_area)
+        val fieldName: TextView = itemView.findViewById(R.id.field_name)
+        val area: TextView = itemView.findViewById(R.id.field_area)
+        val detailsView: TextView = itemView.findViewById(R.id.details_view)
+        val detailsButton: LinearLayout = itemView.findViewById(R.id.go_to_details)
+        val fieldContainer: LinearLayout = itemView.findViewById(R.id.container)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,9 +37,21 @@ class FieldAdapter(private val fields: List<FieldDetail>) :
         fieldName.setText(fieldDetail.field)
         val area = holder.area
         area.setText(fieldDetail.area.toString() + " " + fieldDetail.unit)
+        holder.detailsView.setOnClickListener(showDetails())
+        if(holder.fieldName.text.toString().equals("Razem: ")){
+            holder.detailsButton.visibility = View.GONE
+            holder.fieldContainer.setBackgroundResource(R.drawable.field_detail_btn_bg)
+        }
+    }
+
+    private fun showDetails(): View.OnClickListener {
+        return View.OnClickListener {
+            parentFragmentManager.beginTransaction().setReorderingAllowed(true).replace(R.id.field_action_container,FieldDetailFragment(),"").commit()
+        }
     }
 
     override fun getItemCount(): Int {
         return fields.size
     }
+
 }
