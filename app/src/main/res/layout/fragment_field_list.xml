@@ -9,11 +9,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFields"
         android:layout_width="0dp"
-        android:background="@drawable/add_field_bg"
+        android:background="@drawable/fields"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

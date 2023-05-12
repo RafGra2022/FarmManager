@@ -25,15 +25,15 @@ class FieldHandler {
         }
     }
 
-    suspend fun fetchAllFields(context: Context?) : List<FieldDetail>{
+    suspend fun fetchAllFields(context: Context?) : ArrayList<FieldDetail>{
         if (context != null) {
-                val fields = AppDatabase.getDataBase(context).fieldDao().findAllFields()
+                val fields = AppDatabase.getDataBase(context).fieldDao().findAllFields() as ArrayList
                 return mapToFieldDetail(fields)
         }
         return ArrayList()
     }
 
-    private fun mapToFieldDetail(fieldEntities : List<FieldEntity>) : List<FieldDetail>{
+    private fun mapToFieldDetail(fieldEntities : ArrayList<FieldEntity>) : ArrayList<FieldDetail>{
         val fields : ArrayList<FieldDetail> = ArrayList()
         for(fieldEntity in fieldEntities){
             fields.add(FieldDetail(fieldEntity.field,fieldEntity.area,fieldEntity.unit))
