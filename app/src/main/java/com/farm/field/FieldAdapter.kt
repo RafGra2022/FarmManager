@@ -3,16 +3,15 @@ package com.farm.field
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.farm.R
 import com.farm.domain.FieldDetail
 
-class FieldAdapter(private val fields: List<FieldDetail>, val parentFragmentManager: FragmentManager) :
+class FieldAdapter(private val fields: List<FieldDetail>, val parentFragment: Fragment) :
     RecyclerView.Adapter<FieldAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,7 +45,9 @@ class FieldAdapter(private val fields: List<FieldDetail>, val parentFragmentMana
 
     private fun showDetails(): View.OnClickListener {
         return View.OnClickListener {
-            parentFragmentManager.beginTransaction().setReorderingAllowed(true).replace(R.id.field_action_container,FieldDetailFragment(),"").commit()
+            val navHostFragment = parentFragment.activity?.supportFragmentManager?.findFragmentById(R.id.field_action_container) as NavHostFragment
+            val navController = navHostFragment.navController
+            navController.navigate(R.id.go_to_field_details)
         }
     }
 

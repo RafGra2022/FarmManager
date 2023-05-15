@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.NavHostFragment
 import com.farm.R
 import com.google.android.material.button.MaterialButton
 
@@ -28,24 +29,9 @@ class FieldDetailFragment : Fragment() {
 
     private fun showAgriculture(): View.OnClickListener? {
         return View.OnClickListener {
-            parentFragmentManager.beginTransaction().setReorderingAllowed(true)
-                .replace(R.id.field_action_container, AgriculturalFragment(), "fieldDetail")
-                .commit()
-        }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        requireActivity().onBackPressedDispatcher.addCallback(returnCallback())
-    }
-
-    fun returnCallback(): OnBackPressedCallback {
-        return object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                parentFragmentManager.beginTransaction().setReorderingAllowed(true)
-                    .replace(R.id.field_action_container, FieldListFragment(), "fieldDetail")
-                    .commit()
-            }
+            val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.field_action_container) as NavHostFragment
+            val navController = navHostFragment.navController
+            navController.navigate(R.id.go_to_agriculture)
         }
     }
 

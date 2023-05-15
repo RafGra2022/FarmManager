@@ -1,16 +1,12 @@
 package com.farm.field
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.farm.MainActivity
 import com.farm.R
 import com.farm.domain.FieldDetail
 import com.farm.domain.FieldHandler
@@ -31,17 +27,11 @@ class FieldListFragment : Fragment() {
             fields = fieldHandler.fetchAllFields(context)
         }
         fields.add(FieldDetail("Razem: ",sumFieldArea(fields),"ha"))
-        val adapter = FieldAdapter(fields,parentFragmentManager)
+        val adapter = FieldAdapter(fields,this)
         rvContacts.adapter = adapter
         rvContacts.layoutManager = LinearLayoutManager(context)
         return view
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        requireActivity().onBackPressedDispatcher.addCallback(returnCallback())
-    }
-
 
     private fun sumFieldArea(fields : List<FieldDetail>) : Float{
         var totalArea = 0f
@@ -53,12 +43,4 @@ class FieldListFragment : Fragment() {
         return AreaUnitConverter.squareMeterToHectare(totalArea)
     }
 
-    fun returnCallback(): OnBackPressedCallback {
-        return object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                val intent = Intent(context,MainActivity::class.java)
-                startActivity(intent)
-            }
-        }
-    }
 }

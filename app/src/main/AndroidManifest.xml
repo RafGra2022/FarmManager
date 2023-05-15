@@ -17,6 +17,13 @@
         android:theme="@style/Theme.FarmManager"
         tools:targetApi="31">
         <activity
+            android:name="com.farm.field.AddFieldActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="com.farm.field.FieldActivity"
             android:exported="false"
             android:label="@string/title_activity_field"
