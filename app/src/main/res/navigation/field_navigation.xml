@@ -13,5 +13,13 @@
 
     <fragment
         android:id="@+id/FieldDetailFragment"
-        android:name="com.farm.field.FieldDetailFragment" />
+        android:name="com.farm.field.FieldDetailFragment" >
+        <action
+            android:id="@+id/go_to_agriculture"
+            app:destination="@id/AgriculturalFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AgriculturalFragment"
+        android:name="com.farm.field.AgriculturalFragment" />
 </navigation>

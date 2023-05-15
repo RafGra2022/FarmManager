@@ -3,17 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".field.FieldActivity"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".field.AddFieldActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/field_action_container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:id="@+id/add_field_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/field_navigation"
-        tools:layout="@layout/fragment_field_list" />
+        android:name="com.farm.field.AddFieldFragment"
+        tools:layout="@layout/fragment_add_field" />
 
 </ScrollView>

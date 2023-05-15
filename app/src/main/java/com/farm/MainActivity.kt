@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
+import com.farm.field.AddFieldActivity
 import com.farm.field.FieldActivity
 import kotlin.math.absoluteValue
 import kotlin.math.pow
@@ -51,12 +52,10 @@ class MainActivity : AppCompatActivity() , LocationListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.add_field){
-            startActivity(Intent(this@MainActivity,FieldActivity::class.java))
+            startActivity(Intent(this@MainActivity,AddFieldActivity::class.java))
         }
         if(item.itemId == R.id.view_fields){
-            val intent = Intent(this@MainActivity,FieldActivity::class.java)
-            intent.putExtra("fragment","FieldListFragment")
-            startActivity(intent)
+            startActivity(Intent(this@MainActivity,FieldActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
